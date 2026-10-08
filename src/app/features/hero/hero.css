@@ -1,0 +1,217 @@
+:host {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 12vw, 9rem) clamp(3.5rem, 8vw, 6rem);
+}
+
+/* Subtle grid that fades out toward the edges, plus a faint accent glow. */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 0%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 0%, #000 30%, transparent 75%);
+}
+
+.backdrop::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  width: min(900px, 120vw);
+  height: 520px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgb(var(--accent-rgb) / 0.14), transparent);
+}
+
+.content {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* ---------- Photo ---------- */
+.portrait {
+  position: relative;
+  width: clamp(240px, 26vw, 320px);
+  isolation: isolate;
+  margin: 0;
+}
+
+/* Very soft accent glow behind the frame. */
+.portrait::before {
+  content: '';
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgb(var(--accent-rgb) / 0.16), transparent);
+}
+
+.portrait img,
+.placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+}
+
+.portrait img {
+  height: auto;
+  object-fit: cover;
+  object-position: center top;
+  background: var(--surface);
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(var(--accent-rgb) / 0.1), transparent 65%),
+    var(--surface);
+}
+
+.placeholder span {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-subtle);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 2rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--tint);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 3px rgb(74 222 128 / 0.18);
+}
+
+.name {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+}
+
+.name .sep,
+.name .spec {
+  color: var(--text-subtle);
+}
+
+.name .sep {
+  margin: 0 0.6ch 0 0.1ch;
+}
+
+h1 {
+  max-width: 17ch;
+  margin: 0;
+  font-size: clamp(2.5rem, 5.6vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 650;
+  background: linear-gradient(180deg, var(--heading-from) 30%, var(--heading-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.intro {
+  max-width: 40rem;
+  margin: 1.75rem 0 0;
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.chips {
+  margin-top: 2rem;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+/* Gentle load-in for the secondary hero content; the heading renders immediately. */
+@media (prefers-reduced-motion: no-preference) {
+  .status,
+  .intro,
+  .chips,
+  .cta,
+  .portrait {
+    animation: rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .intro { animation-delay: 80ms; }
+  .chips { animation-delay: 140ms; }
+  .cta { animation-delay: 200ms; }
+  .portrait { animation-delay: 120ms; }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Tablet and mobile: photo sits above the text at a modest size. */
+@media (max-width: 860px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .portrait {
+    order: -1;
+    width: 148px;
+  }
+
+  .portrait img,
+  .placeholder {
+    border-radius: var(--radius-lg);
+  }
+
+  .placeholder span {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .name .sep {
+    display: none;
+  }
+
+  .name .spec {
+    display: block;
+    margin-top: 0.35rem;
+  }
+
+  .cta .btn {
+    flex: 1 1 100%;
+  }
+}

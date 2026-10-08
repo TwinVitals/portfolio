@@ -1,0 +1,106 @@
+import { Experience, WorkItem } from './models';
+
+export const EXPERIENCE: readonly Experience[] = [
+  {
+    id: 'five9',
+    company: 'Miratech',
+    client: 'Five9',
+    role: 'Senior Software Engineer',
+    period: 'Nov 2025 – Present',
+    location: 'Remote',
+    domain: 'Contact Center',
+    highlights: [
+      'Design and build cloud microservices and APIs for Five9’s omnichannel contact center platform, serving real-time voice, digital messaging and AI-driven customer interactions.',
+      'Build high-availability Java and Spring Boot services on Kubernetes, using bounded thread pools and asynchronous processing to hold latency stable under production traffic.',
+      'Instrument services with structured logging, metrics and distributed tracing, giving on-call engineers request-level traces across service boundaries.',
+      'Lead design discussions and review merge requests, standardizing API contracts, error handling and logging patterns across services.',
+    ],
+    stack: ['Java 17 & 21', 'Spring Boot', 'gRPC', 'REST', 'Kafka', 'Redis', 'MongoDB', 'Kubernetes', 'AWS'],
+  },
+  {
+    id: 'blackrock',
+    company: 'Miratech',
+    client: 'BlackRock',
+    role: 'Senior Software Engineer',
+    period: 'Aug 2022 – Nov 2025',
+    location: 'Remote',
+    domain: 'Investment Management',
+    highlights: [
+      'Developed backend services for Astra, BlackRock’s investment management platform, processing portfolio and market data for institutional workflows.',
+      'Built gRPC and Protocol Buffers APIs over HTTP/2 on latency-sensitive paths, replacing JSON over HTTP/1.1.',
+      'Built Kafka event pipelines that moved Astra from synchronous request flows to an event-driven model, and added Redis caching for frequently requested reference data.',
+      'Raised unit-test coverage to 95% with JUnit, Mockito and SonarQube quality gates, and introduced multithreaded processing for independent portfolio computations.',
+    ],
+    stack: ['Java 17', 'Spring Boot', 'gRPC', 'Protocol Buffers', 'HTTP/2', 'Kafka', 'Redis', 'Angular', 'JUnit', 'Mockito'],
+  },
+  {
+    id: 'artha',
+    company: 'PureSoftware',
+    role: 'Senior Software Engineer',
+    period: 'Dec 2020 – Aug 2022',
+    location: 'Noida, India',
+    domain: 'Digital Banking & Payments',
+    highlights: [
+      'Led a team of 5 engineers on Artha, owning technical direction for customer onboarding, account servicing and payment transaction flows.',
+      'Designed Spring Boot microservices that broke a tightly coupled core banking application into independently deployable onboarding, account and payment services.',
+      'Authored high- and low-level designs covering caching strategy, database sharding for growing transaction history and service decomposition.',
+      'Built shared Angular components used by multiple teams across the banking portal, and mentored junior engineers.',
+    ],
+    stack: ['Java 8', 'Spring Boot', 'Microservices', 'Angular', 'MySQL', 'Redis'],
+  },
+  {
+    id: 'idemia',
+    company: 'IDEMIA',
+    role: 'Software Engineer',
+    period: 'Nov 2018 – Dec 2020',
+    location: 'Noida, India',
+    domain: 'Biometric Identity',
+    highlights: [
+      'Developed Java services for face and iris recognition systems used in identity verification programs, handling sensitive biometric data.',
+      'Translated client requirements into technical designs and delivered features across development, SIT and UAT environments.',
+      'Resolved defects across testing phases and supported production issues directly with client stakeholders.',
+    ],
+    stack: ['Java', 'Oracle WebLogic', 'JUnit', 'SQL'],
+  },
+  {
+    id: 'bureau-veritas',
+    company: 'Bureau Veritas',
+    role: 'Software Engineer',
+    period: 'Oct 2016 – Nov 2018',
+    location: 'Noida, India',
+    domain: 'Laboratory Testing & Certification',
+    highlights: [
+      'Built Java features for BvLabNg, a laboratory testing and certification platform supporting sample analysis and compliance reporting.',
+      'Optimized existing modules by removing duplicated logic and redundant database calls.',
+      'Supported releases across SIT and UAT and resolved defects through unit, integration and acceptance testing.',
+    ],
+    stack: ['Java', 'Oracle WebLogic', 'SQL'],
+  },
+];
+
+export const SELECTED_WORK: readonly WorkItem[] = [
+  {
+    index: '01',
+    title: 'Omnichannel Contact Center',
+    context: 'Five9',
+    description: 'Building distributed cloud services supporting real-time contact-center experiences.',
+    stack: ['Java', 'Spring Boot', 'Kubernetes', 'Kafka', 'gRPC', 'AWS'],
+    experienceId: 'five9',
+  },
+  {
+    index: '02',
+    title: 'Investment Management Platform',
+    context: 'BlackRock / Astra',
+    description: 'Building backend services and event-driven workflows for investment management.',
+    stack: ['Java', 'Spring Boot', 'gRPC', 'Kafka', 'Redis'],
+    experienceId: 'blackrock',
+  },
+  {
+    index: '03',
+    title: 'Digital Banking & Payments',
+    context: 'Artha',
+    description: 'Helping decompose a core banking platform into independently deployable services.',
+    stack: ['Java', 'Spring Boot', 'Microservices', 'Angular', 'Redis'],
+    experienceId: 'artha',
+  },
+];

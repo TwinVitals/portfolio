@@ -1,0 +1,42 @@
+<div class="container">
+  <app-section-heading eyebrow="Experience" headingId="experience-title" title="Where I’ve worked"
+                       lead="Nine years across contact center, investment management, digital banking, biometric identity and compliance platforms." />
+
+  <ol class="timeline">
+    @for (job of jobs; track job.id; let first = $first) {
+      <li class="entry" [id]="'experience-' + job.id" appReveal>
+        <div class="meta">
+          <p class="period">{{ job.period }}</p>
+          <p class="location">{{ job.location }}</p>
+        </div>
+
+        <div class="marker" [class.current]="first" aria-hidden="true"></div>
+
+        <article class="card">
+          <header>
+            <h3>{{ job.role }}</h3>
+            <p class="company">
+              {{ job.company }}
+              @if (job.client) {
+                <span class="client">· Client: {{ job.client }}</span>
+              }
+            </p>
+            <p class="domain">{{ job.domain }}</p>
+          </header>
+
+          <ul class="highlights">
+            @for (point of job.highlights; track $index) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+
+          <ul class="chips chips-sm" aria-label="Technologies">
+            @for (tech of job.stack; track tech) {
+              <li class="chip">{{ tech }}</li>
+            }
+          </ul>
+        </article>
+      </li>
+    }
+  </ol>
+</div>

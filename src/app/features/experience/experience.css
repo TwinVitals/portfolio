@@ -1,0 +1,176 @@
+:host {
+  display: block;
+}
+
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 11rem 2.5rem minmax(0, 1fr);
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+.entry + .entry {
+  margin-top: 1.25rem;
+}
+
+/* Vertical line runs through the marker column and joins consecutive entries. */
+.entry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: -1.25rem;
+  left: calc(11rem + 1.25rem);
+  width: 1px;
+  background: var(--border);
+}
+
+.entry:last-child::before {
+  bottom: 0;
+  background: linear-gradient(var(--border), transparent);
+}
+
+.meta {
+  padding-top: 1.6rem;
+  text-align: right;
+}
+
+.period {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text);
+}
+
+.location {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-subtle);
+}
+
+.marker {
+  position: relative;
+  justify-self: center;
+  width: 11px;
+  height: 11px;
+  margin-top: 1.85rem;
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.marker.current {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / 0.15);
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  transition: border-color 200ms ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.company {
+  margin: 0.25rem 0 0;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.client {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.domain {
+  display: inline-block;
+  margin: 0.75rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.highlights {
+  margin: 1.125rem 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.highlights li + li {
+  margin-top: 0.5rem;
+}
+
+.highlights li::before {
+  content: '';
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-subtle);
+}
+
+@media (max-width: 760px) {
+  .entry {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    grid-template-areas:
+      'marker meta'
+      '.      card';
+  }
+
+  .entry::before {
+    left: 0.75rem;
+    top: 0.5rem;
+  }
+
+  .marker {
+    grid-area: marker;
+    margin-top: 0.3rem;
+  }
+
+  .meta {
+    grid-area: meta;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
+    align-items: baseline;
+    padding: 0 0 0.75rem;
+    text-align: left;
+  }
+
+  .location {
+    margin: 0;
+  }
+
+  .card {
+    grid-area: card;
+    padding: 1.25rem;
+  }
+}
