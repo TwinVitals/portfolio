@@ -26,7 +26,7 @@ All copy lives in `src/app/data/` — components only render it:
   `photo: { src: 'images/navneet-kumar.webp', alt: 'Navneet Kumar, Senior Software Engineer' }`.
 - Resume: replace `public/resume/Navneet_Kumar_Senior_Software_Engineer.pdf` (keep the file name, or update `resumeUrl` in `profile.ts`).
 - SEO / Open Graph tags: `src/index.html`. Social preview image: `public/og-image.png` (1200×630).
-- If you deploy somewhere other than `https://nitume00.github.io/`, update the absolute URLs in
+- If you deploy somewhere other than `https://twinvitals.github.io/portfolio/`, update the absolute URLs in
   `src/index.html`, `public/robots.txt` and `public/sitemap.xml`.
 
 ## Structure
